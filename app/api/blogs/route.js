@@ -1,12 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { NextResponse } from 'next/server';
 
-export default function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
-  }
-
+export async function GET() {
   const dirPath = path.join(process.cwd(), 'content');
   const dirContent = fs.readdirSync(dirPath, 'utf-8');
 
@@ -17,5 +14,5 @@ export default function handler(req, res) {
     return data;
   });
 
-  res.status(200).json(blogs);
+  return NextResponse.json(blogs, { status: 200 });
 }

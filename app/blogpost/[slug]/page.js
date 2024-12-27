@@ -9,18 +9,22 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
+import OnThisPage from '@/components/ui/onthispage';
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const dirPath = path.join(process.cwd(), 'content');
   const filenames = fs.readdirSync(dirPath);
-  const paths = filenames.map((filename) => ({
-    params: { slug: filename.replace(/\.md$/, '') },
+  return filenames.map((filename) => ({
+    slug: filename.replace(/\.md$/, ''),
   }));
-  return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
-  const filepath = path.join(process.cwd(), 'content', `${params.slug}.md`);
+async function getPostData(slug) {
+  const filepath = path.join(process.cwd(), 'content', `${slug}.md`);
+  if (!fs.existsSync(filepath)) {
+    return null;
+  }
+
   const fileContent = fs.readFileSync(filepath, 'utf-8');
   const { content, data } = matter(fileContent);
 
@@ -43,16 +47,21 @@ export async function getStaticProps({ params }) {
   const htmlContent = (await processor.process(content)).toString();
 
   return {
-    props: {
-      post: {
-        ...data,
-        content: htmlContent,
-      },
-    },
+    ...data,
+    content: htmlContent,
   };
 }
 
-export default function BlogPost({ post }) {
+export default async function BlogPost({ params }) {
+  const { slug } = await params;
+  const post = await getPostData(slug);
+
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
+
   return (
     <div className="max-w-6xl mx-auto p-4">
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
@@ -67,6 +76,7 @@ export default function BlogPost({ post }) {
         dangerouslySetInnerHTML={{ __html: post.content }}
         className="prose dark:prose-invert"
       ></div>
+      <OnThisPage htmlContent={post.content} />
     </div>
   );
 }
