@@ -14,6 +14,8 @@ export default async function Home() {
         "Coding",
         "Web Development",
         "Software Engineering",
+        "Full Stack Developnment",
+        "Mern Stack",
         "Data Science",
       ],
       typeSpeed: 50,
