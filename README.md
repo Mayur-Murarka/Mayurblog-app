@@ -1,4 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mayur's Blog
+
+Welcome to Mayur's Blog! This is a personal blog application where you can find insights, tutorials, and stories from My tech journey.
+
+## Getting Started
+
+To get started with the project, follow these steps:
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- Node.js (v14 or later)
+- npm (v6 or later) or yarn (v1.22 or later)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/blogapp.git
+cd blogapp
+```
+
+2. Install the dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
 ## Getting Started
 
@@ -20,14 +49,30 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Building for Production
+To build the application for production, use the following command:
+```bash
+npm run build
+# or
+yarn build
+```
+This will create an optimized production build in the .next directory.
 
-To learn more about Next.js, take a look at the following resources:
+## Running in Production
+To run the application in production, use the following command:
+```bash
+npm start
+# or
+yarn start
+```
+This will start the development server in production mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features
+1. Dynamic Routing: The blog application uses dynamic routing to display individual blog posts.
+2. Markdown Support: Blog posts are written in Markdown and converted to HTML using remark and rehype.
+3. Responsive Design: The application is designed to be responsive and works well on various devices and scre
+4. SEO Optimization: The application is optimized for search engines with proper meta tags and descriptions.
+5. Customizable: The application is highly customizable with a variety of options for customizing the layout
 
 ## Deploy on Vercel
 
