@@ -18,7 +18,7 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/blogapp.git
+git clone https://github.com/Mayur-Murarka/Mayurblog-app.git
 cd blogapp
 ```
 
