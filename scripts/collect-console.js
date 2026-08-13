@@ -7,6 +7,33 @@ const puppeteer = require("puppeteer");
   });
   const page = await browser.newPage();
 
+  // Inject global error collectors before any scripts run
+  await page.evaluateOnNewDocument(() => {
+    window.__collectedErrors = window.__collectedErrors || [];
+    window.addEventListener("error", (e) => {
+      try {
+        window.__collectedErrors.push({
+          type: "error",
+          message: e.message,
+          filename: e.filename,
+          lineno: e.lineno,
+          colno: e.colno,
+          stack: e.error && e.error.stack,
+        });
+      } catch (err) {}
+    });
+    window.addEventListener("unhandledrejection", (e) => {
+      try {
+        const r = e.reason || {};
+        window.__collectedErrors.push({
+          type: "unhandledrejection",
+          message: r.message || String(r),
+          stack: r.stack,
+        });
+      } catch (err) {}
+    });
+  });
+
   const logs = [];
   page.on("console", (msg) => {
     const args = msg.args().map((a) => {
@@ -46,6 +73,16 @@ const puppeteer = require("puppeteer");
 
   console.log("--- BROWSER LOGS START ---");
   console.log(JSON.stringify(logs, null, 2));
+  try {
+    const pageErrors = await page.evaluate(
+      () => window.__collectedErrors || [],
+    );
+    console.log("--- PAGE ERRORS START ---");
+    console.log(JSON.stringify(pageErrors, null, 2));
+    console.log("--- PAGE ERRORS END ---");
+  } catch (e) {
+    console.log("--- PAGE ERRORS FETCH FAILED ---");
+  }
   console.log("--- BROWSER LOGS END ---");
 
   await browser.close();
