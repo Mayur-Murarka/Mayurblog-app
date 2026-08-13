@@ -217,7 +217,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">
               Most Popular
             </h2>
-          <Blog />
+            <Blog />
           </div>
         </div>
       </section>
