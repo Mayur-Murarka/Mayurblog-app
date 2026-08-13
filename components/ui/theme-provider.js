@@ -1,6 +1,11 @@
-"use client";
-import React from "react";
+"use client"
 
-export default function themeproviderPlaceholder() {
-  return (<div data-placeholder="themeprovider">Placeholder: themeprovider</div>);
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
