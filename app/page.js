@@ -1,5 +1,4 @@
 "use client";
-import Typed from "typed.js";
 import React, { useRef, useEffect } from "react";
 import Blog from "./blog/page";
 import Footer from "@/components/ui/Footer";
@@ -9,21 +8,34 @@ export default function Home() {
   const el = useRef(null);
 
   useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: [
-        "Coding",
-        "Web Development",
-        "Software Engineering",
-        "Full Stack Developnment",
-        "Mern Stack",
-        "Data Science",
-      ],
-      typeSpeed: 50,
-    });
+    let typed;
+    (async () => {
+      try {
+        const TypedModule = await import("typed.js");
+        const Typed = TypedModule?.default || TypedModule;
+        if (el.current && Typed) {
+          typed = new Typed(el.current, {
+            strings: [
+              "Coding",
+              "Web Development",
+              "Software Engineering",
+              "Full Stack Developnment",
+              "Mern Stack",
+              "Data Science",
+            ],
+            typeSpeed: 50,
+          });
+        }
+      } catch (e) {
+        // Fail silently in environments where typed.js cannot load
+        // console.error('Failed to load typed.js', e)
+      }
+    })();
 
     return () => {
-      // Destroy Typed instance during cleanup to stop animation
-      typed.destroy();
+      if (typed && typeof typed.destroy === "function") {
+        typed.destroy();
+      }
     };
   }, []);
 
