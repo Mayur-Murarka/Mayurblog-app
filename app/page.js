@@ -1,7 +1,5 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import Blog from "./blog/page";
-import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   // Create reference to store the DOM element containing the animation
