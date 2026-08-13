@@ -229,13 +229,12 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">
               Most Popular
             </h2>
-            <Blog />
+            {/* Temporarily disable Blog component to debug runtime error on deployed site */}
+            <div className="text-gray-600">Latest posts will appear here.</div>
           </div>
         </div>
       </section>
-      <section>
-        <Footer></Footer>
-      </section>
+      {/* Footer temporarily removed to isolate client error */}
     </main>
   );
 }
