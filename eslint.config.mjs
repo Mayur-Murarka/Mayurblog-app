@@ -4,6 +4,13 @@ import hooksPlugin from "eslint-plugin-react-hooks";
 
 const eslintConfig = [
   {
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
     plugins: {
       "@next/next": nextPlugin,
       react: reactPlugin,
