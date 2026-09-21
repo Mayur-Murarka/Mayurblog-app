@@ -2,7 +2,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { Sparkles, Calendar, User, Clock, ArrowRight } from "lucide-react";
+import {
+  Sparkles,
+  Calendar,
+  User,
+  Clock,
+  ArrowRight,
+  PenTool,
+  Users,
+  BarChart3,
+  CheckCircle2,
+  Star,
+  Quote,
+  Zap,
+} from "lucide-react";
 
 export default function Home() {
   // Create reference to store the DOM element containing the animation
@@ -108,92 +121,116 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-gray-100 dark:bg-gray-900">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">
-              Features
+      {/* FEATURES SECTION */}
+      <section className="py-24 relative overflow-hidden bg-slate-50/70 dark:bg-slate-950/60">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/3 left-10 w-80 h-80 bg-purple-500/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+        <div className="container px-4 mx-auto relative z-10">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-4 backdrop-blur-md shadow-sm">
+              <Zap className="w-3.5 h-3.5 text-purple-500 animate-pulse" />
+              <span>SUPERCHARGED PLATFORM</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+              Discover Our <span className="gradient-text">Features</span>
             </h2>
-            <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
-              Discover what our blog platform offers
+            <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400">
+              Everything you need to write, publish, and grow an engaged readership.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center">
-            {/* Writing Features */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature 1: Writing Tools */}
+            <div className="group relative rounded-2xl p-8 bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <PenTool className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                   Writing Tools
                 </h3>
-                <ul className="mt-6 mb-6 space-y-4">
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Rich Text Editor
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Markdown Support
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Draft Auto-save
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Image Upload
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    SEO Tools
-                  </li>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                  Craft flawless articles with distraction-free editing, live code highlighting, and instant previews.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Rich Markdown & Syntax Highlighting",
+                    "Draft Auto-save & Local Backups",
+                    "Instant Image Drag & Drop",
+                    "Built-in SEO & OpenGraph Meta",
+                    "One-click Publishing Pipeline",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-purple-500 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
-            {/* Community Features */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center border-2 border-purple-500">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+
+            {/* Feature 2: Community (Featured) */}
+            <div className="group relative rounded-2xl p-8 bg-white dark:bg-gray-900/90 border-2 border-purple-500 shadow-xl shadow-purple-500/10 hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:-translate-y-2.5 flex flex-col justify-between">
+              {/* Popular badge */}
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                <span className="px-4 py-1 text-xs font-bold tracking-wide uppercase text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-md shadow-purple-500/30">
+                  ★ Most Popular
+                </span>
+              </div>
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-pink-500/25 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <Users className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
                   Community
                 </h3>
-                <span className="inline-block px-3 py-1 text-sm font-semibold text-white bg-purple-500 rounded-full">
-                  Popular
-                </span>
-                <ul className="mt-6 mb-6 space-y-4">
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Comments Section
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    User Profiles
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Follow System
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Share Posts
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Notifications
-                  </li>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                  Foster lively discussions, build a personal following, and network with passionate developers.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Threaded Interactive Comments",
+                    "Custom Developer Profiles",
+                    "Follow System & Activity Feed",
+                    "Seamless Social Sharing",
+                    "Instant Real-time Notifications",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-pink-500 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
-            {/* Analytics Features */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+
+            {/* Feature 3: Analytics */}
+            <div className="group relative rounded-2xl p-8 bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-indigo-500 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <BarChart3 className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   Analytics
                 </h3>
-                <ul className="mt-6 mb-6 space-y-4">
-                  <li className="text-gray-600 dark:text-gray-400">
-                    View Statistics
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Reader Demographics
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Engagement Metrics
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Performance Reports
-                  </li>
-                  <li className="text-gray-600 dark:text-gray-400">
-                    Growth Insights
-                  </li>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                  Understand your audience with actionable reader analytics, retention charts, and traffic metrics.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Live Views & Readership Stats",
+                    "Reader Geographic Demographics",
+                    "Scroll Depth & Engagement Metrics",
+                    "Detailed Performance Reports",
+                    "Organic Search Growth Insights",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -201,62 +238,91 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-white dark:bg-gray-900">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">
-              What Our Clients Say
+      {/* TESTIMONIALS SECTION */}
+      <section className="py-24 relative overflow-hidden bg-white dark:bg-gray-900">
+        {/* Subtle Ambient Orbs */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-purple-500/5 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+        <div className="container px-4 mx-auto relative z-10">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20 mb-4 backdrop-blur-md shadow-sm">
+              <Quote className="w-3.5 h-3.5 text-pink-500" />
+              <span>TESTIMONIALS</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+              What Our <span className="gradient-text">Readers & Clients</span> Say
             </h2>
-            <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
-              Hear from our satisfied customers
+            <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400">
+              Hear how engineers, leaders, and creators elevate their work with MayurBlog.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center">
-            {/* Testimonial 1 */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center">
-                <p className="text-gray-600 dark:text-gray-400">
-                  "This service has been a game-changer for our business. Highly
-                  recommend!"
-                </p>
-                <h3 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                  John Doe
-                </h3>
-                <p className="text-gray-500 dark:text-gray-300">
-                  CEO, Company A
-                </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                quote:
+                  "This service has been a game-changer for our engineering team. The clarity of the tutorials and depth of documentation is second to none.",
+                name: "John Doe",
+                role: "CEO, Company A",
+                initials: "JD",
+                gradient: "from-purple-600 to-indigo-600",
+              },
+              {
+                quote:
+                  "Amazing experience! The platform aesthetics, speed, and community engagement have been truly outstanding. Highly recommended!",
+                name: "Jane Smith",
+                role: "Marketing Director, Company B",
+                initials: "JS",
+                gradient: "from-pink-600 to-rose-600",
+              },
+              {
+                quote:
+                  "Exceptional quality and technical precision. Reading articles here has leveled up our development workflow. We couldn't be happier!",
+                name: "Michael Brown",
+                role: "CTO, Company C",
+                initials: "MB",
+                gradient: "from-blue-600 to-cyan-600",
+              },
+            ].map((t, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-2xl p-8 bg-slate-50/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/60 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-400/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Rating Stars */}
+                  <div className="flex items-center gap-1 mb-5">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className="w-4 h-4 fill-amber-400 text-amber-400 transition-transform duration-200 group-hover:scale-110"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed italic mb-8">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                </div>
+
+                {/* Author Info with Gradient Avatar */}
+                <div className="flex items-center gap-3.5 pt-4 border-t border-gray-200/70 dark:border-gray-700/60">
+                  <div
+                    className={`w-11 h-11 rounded-full bg-gradient-to-tr ${t.gradient} flex items-center justify-center text-white font-bold text-sm shadow-md flex-shrink-0 group-hover:scale-105 transition-transform`}
+                  >
+                    {t.initials}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-base leading-snug">
+                      {t.name}
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      {t.role}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-            {/* Testimonial 2 */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center">
-                <p className="text-gray-600 dark:text-gray-400">
-                  "Amazing experience! The team was professional and the results
-                  were outstanding."
-                </p>
-                <h3 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                  Jane Smith
-                </h3>
-                <p className="text-gray-500 dark:text-gray-300">
-                  Marketing Director, Company B
-                </p>
-              </div>
-            </div>
-            {/* Testimonial 3 */}
-            <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105 text-center">
-                <p className="text-gray-600 dark:text-gray-400">
-                  "Exceptional service and support. We couldn't be happier with
-                  the results."
-                </p>
-                <h3 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                  Michael Brown
-                </h3>
-                <p className="text-gray-500 dark:text-gray-300">
-                  CTO, Company C
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
