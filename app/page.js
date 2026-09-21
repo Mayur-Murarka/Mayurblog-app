@@ -13,8 +13,6 @@ import {
   BarChart3,
   CheckCircle2,
   Star,
-  Quote,
-  Zap,
 } from "lucide-react";
 
 export default function Home() {
@@ -91,57 +89,66 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <section className="container px-4 py-10 mx-auto lg:h-128 lg:space-x-8 lg:flex lg:items-center">
-        <div className="w-full text-center lg:text-left lg:w-1/2 lg:-mt-8">
-          <h1 className="text-3xl leading-snug text-gray-800 dark:text-gray-200 md:text-4xl">
+    <div className="overflow-x-hidden">
+      <section className="container px-4 py-12 md:py-16 lg:py-20 mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+        <div className="w-full text-center lg:text-left lg:w-1/2">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-gray-100">
             Exploring{" "}
-            <span className="font-semibold">the world of technology</span>{" "}
+            <span className="gradient-text">the world of technology</span>{" "}
             through in-depth articles, tutorials, and insights.{" "}
-            <br className="hidden lg:block" />
+            <br className="hidden sm:block" />
             Stay updated with the latest trends in <br />
-            <span className="font-semibold underline decoration-primary">
+            <span className="font-bold underline decoration-purple-500 underline-offset-4">
               <span ref={el} />
             </span>
           </h1>
 
-          <div className="mt-6 bg-transparent border rounded-lg dark:border-gray-700 lg:w-2/3 focus-within:border-primary focus-within:ring focus-within:ring-primary dark:focus-within:border-primary focus-within:ring-opacity-20">
-            <form
-              action="https://www.creative-tim.com/twcomponents/search"
-              className="flex flex-wrap justify-between md:flex-row"
-            ></form>
+          <p className="mt-5 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0">
+            Join thousands of developers leveling up their skills with practical coding guides, architectural deep dives, and tech reviews.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25 transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <span>Explore Articles</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/about"
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              About Mayur
+            </Link>
           </div>
         </div>
-        <div className="w-full mt-4 lg:mt-0 lg:w-1/2">
+        <div className="w-full lg:w-1/2 flex justify-center">
           <img
             src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg"
-            alt="tailwind css components"
-            className="w-full h-full max-w-md mx-auto"
+            alt="Web developer illustration"
+            className="w-full max-w-xs sm:max-w-md lg:max-w-lg h-auto"
           />
         </div>
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-24 relative overflow-hidden bg-slate-50/70 dark:bg-slate-950/60">
+      <section className="py-20 sm:py-24 relative overflow-hidden bg-slate-50/70 dark:bg-slate-950/60">
         {/* Ambient Glows */}
         <div className="absolute top-1/3 left-10 w-80 h-80 bg-purple-500/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="container px-4 mx-auto relative z-10">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-4 backdrop-blur-md shadow-sm">
-              <Zap className="w-3.5 h-3.5 text-purple-500 animate-pulse" />
-              <span>SUPERCHARGED PLATFORM</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-center mb-12 sm:mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Discover Our <span className="gradient-text">Features</span>
             </h2>
-            <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400">
               Everything you need to write, publish, and grow an engaged readership.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature 1: Writing Tools */}
             <div className="group relative rounded-2xl p-8 bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between">
               <div>
@@ -239,25 +246,21 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section className="py-24 relative overflow-hidden bg-white dark:bg-gray-900">
+      <section className="py-20 sm:py-24 relative overflow-hidden bg-white dark:bg-gray-900">
         {/* Subtle Ambient Orbs */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-purple-500/5 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="container px-4 mx-auto relative z-10">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20 mb-4 backdrop-blur-md shadow-sm">
-              <Quote className="w-3.5 h-3.5 text-pink-500" />
-              <span>TESTIMONIALS</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-center mb-12 sm:mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               What Our <span className="gradient-text">Readers & Clients</span> Say
             </h2>
-            <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400">
               Hear how engineers, leaders, and creators elevate their work with MayurBlog.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 quote:
@@ -286,7 +289,7 @@ export default function Home() {
             ].map((t, idx) => (
               <div
                 key={idx}
-                className="group relative rounded-2xl p-8 bg-slate-50/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/60 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-400/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
+                className="group relative rounded-2xl p-6 sm:p-8 bg-slate-50/80 dark:bg-gray-800/80 border border-gray-200/80 dark:border-gray-700/60 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-500/40 dark:hover:border-purple-400/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
               >
                 <div>
                   {/* Rating Stars */}
@@ -327,27 +330,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 relative overflow-hidden bg-slate-50/60 dark:bg-slate-950/40">
+      <section className="py-20 sm:py-24 relative overflow-hidden bg-slate-50/60 dark:bg-slate-950/40">
         {/* Ambient Decorative Glows */}
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
         <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="container px-4 mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-4 backdrop-blur-md shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 animate-pulse text-purple-500" />
-              <span>CURATED SELECTION</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-center mb-12 sm:mb-16 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
               Most <span className="gradient-text">Popular</span> Articles
             </h2>
-            <p className="mt-4 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400">
               Hand-picked, high-impact tutorials and insights designed to accelerate your engineering journey.
             </p>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {[1, 2, 3].map((n) => (
                 <div
                   key={n}
@@ -365,14 +364,14 @@ export default function Home() {
               ))}
             </div>
           ) : blogs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {blogs.map((blog, index) => (
                 <article
                   key={index}
                   className="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 dark:hover:shadow-purple-500/20 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
                 >
                   {/* Image container with hover zoom and gradient overlay */}
-                  <div className="relative overflow-hidden h-60 w-full bg-muted">
+                  <div className="relative overflow-hidden h-52 sm:h-60 w-full bg-muted">
                     {blog.image ? (
                       <img
                         src={blog.image}
@@ -402,7 +401,7 @@ export default function Home() {
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Author & Date metadata */}
                       <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-3">

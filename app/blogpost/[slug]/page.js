@@ -62,20 +62,27 @@ export default async function BlogPost({ params }) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-      <p className="text-base mb-2 border-l-4 border-gray-500 pl-4 italic">
+    <div className="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+        {post.title}
+      </h1>
+      <p className="text-base sm:text-lg mb-4 border-l-4 border-purple-500 pl-4 italic text-muted-foreground">
         &quot;{post.description}&quot;
       </p>
-      <div className="flex gap-2">
-        <p className="text-sm text-gray-500 mb-4 italic">By {post.author}</p>
-        <p className="text-sm text-gray-500 mb-4">{post.date}</p>
+      <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-8">
+        <span className="font-medium">By {post.author}</span>
+        <span>•</span>
+        <span>{post.date}</span>
       </div>
-      <div
-        dangerouslySetInnerHTML={{ __html: post.content }}
-        className="prose dark:prose-invert"
-      ></div>
-      <OnThisPage htmlContent={post.content} />
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div
+          dangerouslySetInnerHTML={{ __html: post.content }}
+          className="prose dark:prose-invert max-w-none w-full overflow-x-auto flex-1"
+        ></div>
+        <div className="hidden lg:block w-64 shrink-0 sticky top-24 self-start">
+          <OnThisPage htmlContent={post.content} />
+        </div>
+      </div>
     </div>
   );
 }
