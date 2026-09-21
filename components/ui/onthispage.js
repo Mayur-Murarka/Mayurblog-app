@@ -1,34 +1,67 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import parse from 'html-react-parser';
+﻿"use client";
+import React, { useEffect, useState } from "react";
 
 const OnThisPage = ({ htmlContent }) => {
   const [headings, setHeadings] = useState([]);
+  const [active, setActive]     = useState("");
 
   useEffect(() => {
-    // Parse the HTML content and extract h2 headings
-    const tempDiv = document.createElement('div');
+    const tempDiv = document.createElement("div");
     tempDiv.innerHTML = htmlContent;
-    const h2Elements = tempDiv.querySelectorAll('h2');
-    const h2Data = Array.from(h2Elements).map(h2 => ({
-      text: h2.textContent,
-      id: h2.id
-    }));
-    setHeadings(h2Data);
+    const hEls = tempDiv.querySelectorAll("h2, h3");
+    setHeadings(
+      Array.from(hEls).map((h) => ({
+        text:  h.textContent,
+        id:    h.id,
+        level: h.tagName === "H2" ? 2 : 3,
+      }))
+    );
   }, [htmlContent]);
 
+  useEffect(() => {
+    if (headings.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+      },
+      { rootMargin: "-20% 0px -70% 0px" }
+    );
+    headings.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, [headings]);
+
+  if (headings.length === 0) return null;
+
   return (
-    <div className="on-this-page absolute top-24 md:right-20 lg:right-1/5 hidden lg:block">
-      <h2 className='text-md font-bold my-2'>On This Page</h2>
-      <ul className='text-sm space-y-1'>
-        {headings.map((heading, index) => (
-          <li key={index}>
-            <a href={`#${heading.id}`}>{heading.text}</a>
+    <nav className="text-sm">
+      <p className="text-xs font-bold uppercase tracking-widest mb-4 gradient-text">On This Page</p>
+      <ul className="space-y-1.5 border-l border-border">
+        {headings.map(({ text, id, level }) => (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              className={`block py-1 transition-all duration-200 ${
+                level === 3 ? "pl-6" : "pl-4"
+              } ${
+                active === id
+                  ? "text-primary font-medium border-l-2 border-primary -ml-px"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {text}
+            </a>
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 
 export default OnThisPage;
+
+
+const OnThisPage = ({ htmlContent }) => {
+  const [headings, setHeadings] = useState([]);
