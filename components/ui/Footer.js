@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                BlogApp
+              <span className="self-center text-2xl font-bold tracking-tight whitespace-nowrap dark:text-white">
+                Mayur<span className="gradient-text">Blog</span>
               </span>
             </Link>
             <p className="mt-2 max-w-md text-sm text-gray-500 dark:text-gray-400">
