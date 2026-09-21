@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useState } from "react";
 
 const OnThisPage = ({ htmlContent }) => {
@@ -62,3 +62,6 @@ const OnThisPage = ({ htmlContent }) => {
 
 export default OnThisPage;
 
+
+const OnThisPage = ({ htmlContent }) => {
+  const [headings, setHeadings] = useState([]);
