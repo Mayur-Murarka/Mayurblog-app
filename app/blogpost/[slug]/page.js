@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 import OnThisPage from '@/components/ui/onthispage';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const dirPath = path.join(process.cwd(), 'content');
@@ -31,7 +32,6 @@ async function getPostData(slug) {
   const processor = unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeStringify)
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings)
     .use(rehypePrettyCode, {
@@ -42,7 +42,8 @@ async function getPostData(slug) {
           feedbackDuration: 3000,
         }),
       ],
-    });
+    })
+    .use(rehypeStringify);
 
   const htmlContent = (await processor.process(content)).toString();
 
@@ -57,9 +58,7 @@ export default async function BlogPost({ params }) {
   const post = await getPostData(slug);
 
   if (!post) {
-    return {
-      notFound: true,
-    };
+    notFound();
   }
 
   return (
