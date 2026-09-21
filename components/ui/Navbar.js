@@ -12,8 +12,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Image from "next/image";
 import {
-  Sparkles,
   Github,
   Home as HomeIcon,
   User as UserIcon,
@@ -59,10 +59,17 @@ const Navbar = () => {
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand Logo with animated gradient emblem */}
+        {/* Brand Logo with 3D faceted MB emblem */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-pink-500 flex items-center justify-center text-white shadow-md shadow-purple-500/25 group-hover:scale-105 group-hover:shadow-purple-500/40 group-hover:rotate-3 transition-all duration-300">
-            <Sparkles className="w-5 h-5 text-white" />
+          <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-purple-500/25 border border-purple-500/30 group-hover:scale-105 group-hover:shadow-purple-500/50 group-hover:rotate-3 transition-all duration-300 bg-background/50 flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="MayurBlog MB Logo"
+              width={36}
+              height={36}
+              className="w-full h-full object-cover"
+              priority
+            />
           </div>
           <span className="text-xl font-extrabold tracking-tight text-foreground transition-colors">
             Mayur<span className="gradient-text">Blog</span>
@@ -121,8 +128,14 @@ const Navbar = () => {
               <SheetContent side="right" className="w-72 sm:w-80 p-6">
                 <SheetHeader className="text-left">
                   <SheetTitle className="flex items-center gap-2.5 text-xl font-bold tracking-tight my-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-sm">
-                      <Sparkles className="w-4 h-4 text-white" />
+                    <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-purple-500/30 shadow-sm flex items-center justify-center bg-background/50">
+                      <Image
+                        src="/logo.png"
+                        alt="MayurBlog MB Logo"
+                        width={32}
+                        height={32}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <span>
                       Mayur<span className="gradient-text">Blog</span>

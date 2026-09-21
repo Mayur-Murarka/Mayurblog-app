@@ -6,6 +6,10 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 export const metadata = {
   title: "MayurBlog",
   description: "Insights, tutorials, and stories from Mayur's tech journey",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
