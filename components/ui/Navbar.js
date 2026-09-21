@@ -60,18 +60,18 @@ const Navbar = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo with 3D faceted MB emblem */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-purple-500/25 border border-purple-500/30 group-hover:scale-105 group-hover:shadow-purple-500/50 group-hover:rotate-3 transition-all duration-300 bg-background/50 flex items-center justify-center">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group select-none">
+          <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/logo.png"
               alt="MayurBlog MB Logo"
-              width={36}
-              height={36}
-              className="w-full h-full object-cover"
+              width={100}
+              height={72}
+              className="h-9 sm:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(168,85,247,0.4)] transition-all duration-300 group-hover:drop-shadow-[0_4px_16px_rgba(217,70,239,0.6)]"
               priority
             />
           </div>
-          <span className="text-xl font-extrabold tracking-tight text-foreground transition-colors">
+          <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground transition-colors">
             Mayur<span className="gradient-text">Blog</span>
           </span>
         </Link>
@@ -128,15 +128,13 @@ const Navbar = () => {
               <SheetContent side="right" className="w-72 sm:w-80 p-6">
                 <SheetHeader className="text-left">
                   <SheetTitle className="flex items-center gap-2.5 text-xl font-bold tracking-tight my-2">
-                    <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-purple-500/30 shadow-sm flex items-center justify-center bg-background/50">
-                      <Image
-                        src="/logo.png"
-                        alt="MayurBlog MB Logo"
-                        width={32}
-                        height={32}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <Image
+                      src="/logo.png"
+                      alt="MayurBlog MB Logo"
+                      width={80}
+                      height={58}
+                      className="h-8 w-auto object-contain drop-shadow-[0_2px_8px_rgba(168,85,247,0.35)]"
+                    />
                     <span>
                       Mayur<span className="gradient-text">Blog</span>
                     </span>

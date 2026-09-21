@@ -9,16 +9,14 @@ const Footer = () => {
       <div className="  mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-purple-500/30 shadow-sm flex items-center justify-center bg-background/50 group-hover:scale-105 transition-transform duration-200">
-                <Image
-                  src="/logo.png"
-                  alt="MayurBlog MB Logo"
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <Link href="/" className="flex items-center gap-3 group select-none">
+              <Image
+                src="/logo.png"
+                alt="MayurBlog MB Logo"
+                width={80}
+                height={58}
+                className="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(168,85,247,0.35)] group-hover:scale-105 transition-transform duration-200"
+              />
               <span className="self-center text-2xl font-bold tracking-tight whitespace-nowrap dark:text-white">
                 Mayur<span className="gradient-text">Blog</span>
               </span>
