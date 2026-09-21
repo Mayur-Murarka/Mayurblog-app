@@ -1,9 +1,48 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
   // Create reference to store the DOM element containing the animation
   const el = useRef(null);
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    return isNaN(d.getTime())
+      ? String(dateStr)
+      : d.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+  };
+
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const sorted = [...data].sort(
+            (a, b) => new Date(b.date || 0) - new Date(a.date || 0)
+          );
+          setBlogs(sorted);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error);
+        setLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     let typed;
@@ -227,9 +266,60 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-gray-800 dark:text-gray-200">
               Most Popular
             </h2>
-            {/* Temporarily disable Blog component to debug runtime error on deployed site */}
-            <div className="text-gray-600">Latest posts will appear here.</div>
+            <p className="mt-4 text-lg text-gray-500 dark:text-gray-300">
+              Explore our latest articles and tutorials
+            </p>
           </div>
+
+          {loading ? (
+            <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+              Loading posts...
+            </div>
+          ) : blogs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogs.map((blog, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800 dark:border-2 text-left flex flex-col justify-between"
+                >
+                  {blog.image && (
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="w-full h-64 object-cover"
+                    />
+                  )}
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100">
+                        {blog.title}
+                      </h2>
+                      <p className="mb-4 text-gray-600 dark:text-gray-400">
+                        {blog.description}
+                      </p>
+                    </div>
+                    <div>
+                      <div className="text-sm mb-4 text-gray-500 dark:text-gray-400">
+                        {blog.author && <span>By {blog.author}</span>}
+                        {blog.author && blog.date && <span> | </span>}
+                        {blog.date && <span>{formatDate(blog.date)}</span>}
+                      </div>
+                      <Link
+                        href={`/blogpost/${blog.slug}`}
+                        className={buttonVariants({ variant: "outline" })}
+                      >
+                        Click here
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+              No blog posts available.
+            </div>
+          )}
         </div>
       </section>
     </div>
