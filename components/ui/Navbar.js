@@ -110,9 +110,7 @@ const Navbar = () => {
           </a>
 
           {/* Theme Toggle Button */}
-          <div className="p-0.5 rounded-full border border-border/60 bg-muted/30 hover:border-purple-500/40 transition-colors">
-            <ModeToggle />
-          </div>
+          <ModeToggle />
 
           {/* Mobile Sheet Menu */}
           <div className="md:hidden">

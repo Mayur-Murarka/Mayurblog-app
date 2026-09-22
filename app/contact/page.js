@@ -1,104 +1,408 @@
-import React from 'react'
+"use client";
 
-const contact = () => {
+import React, { useState } from "react";
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle2,
+  Copy,
+  Check,
+  ExternalLink,
+  Sparkles,
+  MessageSquare,
+  Globe,
+  ArrowRight,
+  Github,
+  Linkedin,
+  Twitter,
+  Loader2,
+} from "lucide-react";
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    inquiryType: "Project Collaboration",
+  });
+
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const inquiryTypes = [
+    "Project Collaboration",
+    "Full-Stack Web App",
+    "Technical Writing",
+    "General Inquiry",
+  ];
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("mayurmuarka1@gmail.com");
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch (err) {
+      console.error("Failed to copy email", err);
+    }
+  };
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setIsSuccess(true);
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+      setErrorMessage(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+      inquiryType: "Project Collaboration",
+    });
+    setErrorMessage("");
+    setIsSuccess(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-purple-800 dark:from-purple-700 dark:to-purple-900 px-6 py-8 text-white text-center">
-            <h1 className="text-3xl font-bold">Get In Touch</h1>
-            <p className="mt-2 text-purple-100">I'd love to hear from you!</p>
+    <div className="relative overflow-hidden min-h-screen pb-24 pt-8 sm:pt-14">
+      {/* Ambient Lighting Orbs */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-purple-600/15 via-pink-500/10 to-indigo-500/10 blur-[130px] pointer-events-none -z-10 animate-pulse-glow" />
+      <div className="absolute top-[600px] left-[-100px] w-[500px] h-[500px] bg-blue-500/5 dark:bg-purple-900/15 blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-[-100px] w-[500px] h-[500px] bg-pink-500/5 dark:bg-pink-900/10 blur-[150px] pointer-events-none -z-10" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-4 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Fast Response • Open to Global Collaborations</span>
           </div>
 
-          {/* Contact Form */}
-          <div className="p-8">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
-                  <input 
-                    type="text"
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:focus:border-purple-400 dark:focus:ring-purple-400"
-                    placeholder="Your Name"
-                  />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
+            Let&apos;s build something{" "}
+            <span className="gradient-text">exceptional together.</span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Have a project inquiry, technical discussion, collaboration idea, or just want to say hi? Drop a message below and I&apos;ll get back to you promptly.
+          </p>
+        </div>
+
+        {/* Two-Column Interactive Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Left Column: Direct Connect & Presence Hub (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Quick Email Card */}
+            <div className="p-6 rounded-3xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-purple-500/5 hover:border-purple-500/40 transition-all duration-300 group">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-11 h-11 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-300">
+                  Direct Email
+                </span>
+              </div>
+
+              <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                Drop me a direct line
+              </h2>
+              <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-mono break-all mb-4">
+                mayurmuarka1@gmail.com
+              </p>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleCopyEmail}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-purple-500/15 text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 text-xs font-semibold transition-all duration-200"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check className="w-4 h-4 text-emerald-500" />
+                      <span className="text-emerald-600 dark:text-emerald-400">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" />
+                      <span>Copy Address</span>
+                    </>
+                  )}
+                </button>
+
+                <a
+                  href="mailto:mayurmuarka1@gmail.com"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md hover:shadow-purple-500/25 transition-all"
+                >
+                  <span>Open Mail</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Location & Timezone Card */}
+            <div className="p-6 rounded-3xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-purple-500/5 hover:border-purple-500/40 transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+                  <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
-                  <input 
-                    type="email"
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:focus:border-purple-400 dark:focus:ring-purple-400"
-                    placeholder="your@email.com"
-                  />
+                  <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    Location &amp; Timezone
+                  </h2>
+                  <p className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
+                    Shegaon, Maharashtra, India
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-blue-500" />
+                    <span>IST (UTC+5:30) • Active for global remote</span>
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Subject</label>
-                <input 
-                  type="text"
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:focus:border-purple-400 dark:focus:ring-purple-400"
-                  placeholder="What's this about?"
-                />
+            {/* Working Hours & Turnaround Card */}
+            <div className="p-6 rounded-3xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-purple-500/5 hover:border-purple-500/40 transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    Working Schedule
+                  </h2>
+                  <p className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
+                    Mon - Fri: 9:00 AM - 6:00 PM
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span>Replies typically within 24 hours</span>
+                  </p>
+                </div>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Message</label>
-                <textarea 
-                  rows="4"
-                  className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:focus:border-purple-400 dark:focus:ring-purple-400"
-                  placeholder="Your message here..."
-                />
+            {/* Social Presence Hub */}
+            <div className="p-6 rounded-3xl bg-gradient-to-br from-purple-500/5 via-slate-500/5 to-transparent border border-slate-200/80 dark:border-slate-800 backdrop-blur-xl">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                Connect Across The Web
+              </h2>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://github.com/Mayur-Murarka"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-slate-900 hover:text-white dark:hover:bg-purple-600 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-all duration-200 border border-slate-200 dark:border-slate-700 shadow-sm"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-blue-600 hover:text-white text-xs font-semibold text-slate-700 dark:text-slate-200 transition-all duration-200 border border-slate-200 dark:border-slate-700 shadow-sm"
+                >
+                  <Linkedin className="w-4 h-4 text-blue-500 group-hover:text-white" />
+                  <span>LinkedIn</span>
+                </a>
+                
               </div>
-
-              <button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-bold py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1"
-              >
-                Send Message
-              </button>
-            </form>
+            </div>
           </div>
 
-          {/* Contact Information */}
-          <div className="bg-gray-50 dark:bg-gray-700 px-6 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div className="space-y-2">
-                <div className="w-10 h-10 mx-auto bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-gray-900 dark:text-gray-100 font-medium">Email</h3>
-                <p className="text-gray-600 dark:text-gray-300">mayurmuarka1@gmail.com</p>
-              </div>
+          {/* Right Column: Interactive Glassmorphic Form (7 Cols) */}
+          <div className="lg:col-span-7">
+            <div className="relative rounded-3xl p-6 sm:p-10 bg-white/80 dark:bg-slate-900/70 backdrop-blur-2xl border border-slate-200/90 dark:border-slate-800 shadow-2xl shadow-purple-500/5">
+              {isSuccess ? (
+                /* Success State Celebration */
+                <div className="py-12 px-4 text-center space-y-5 animate-in zoom-in-95 duration-300">
+                  <div className="w-16 h-16 mx-auto rounded-3xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shadow-lg shadow-emerald-500/20">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                      Message Sent Successfully!
+                    </h2>
+                    <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-2 max-w-md mx-auto leading-relaxed">
+                      Thank you for reaching out, <span className="font-semibold text-purple-600 dark:text-purple-400">{formData.name}</span>. Your message has been sent directly to Mayur&apos;s email inbox (<span className="font-mono font-semibold text-slate-800 dark:text-slate-200">mayurmuarka1@gmail.com</span>) and securely recorded. I&apos;ll get back to you promptly.
+                    </p>
+                  </div>
+                  <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+                    <button
+                      onClick={handleReset}
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-purple-500/15 text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 text-xs font-bold transition-all"
+                    >
+                      <span>Send Another Message</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
 
-              <div className="space-y-2">
-                <div className="w-10 h-10 mx-auto bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+                    <a
+                      href={`mailto:mayurmuarka1@gmail.com?subject=${encodeURIComponent(
+                        formData.subject || "Project Inquiry"
+                      )}&body=${encodeURIComponent(formData.message || "")}`}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shadow-md hover:shadow-purple-500/25 transition-all"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Open in Email App</span>
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-gray-900 dark:text-gray-100 font-medium">Location</h3>
-                <p className="text-gray-600 dark:text-gray-300">Shegaon, Maharashtra</p>
-              </div>
+              ) : (
+                /* Active Form */
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/25 text-red-600 dark:text-red-400 text-xs font-medium animate-in fade-in">
+                      {errorMessage}
+                    </div>
+                  )}
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                      Send a Message
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+                      Start the Conversation
+                    </h2>
+                  </div>
 
-              <div className="space-y-2">
-                <div className="w-10 h-10 mx-auto bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-gray-900 dark:text-gray-100 font-medium">Working Hours</h3>
-                <p className="text-gray-600 dark:text-gray-300">Mon-Fri: 9AM - 6PM</p>
-              </div>
+                  {/* Inquiry Type Pill Selector */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                      What are you interested in?
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {inquiryTypes.map((type) => {
+                        const isSelected = formData.inquiryType === type;
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, inquiryType: type })}
+                            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                              isSelected
+                                ? "bg-purple-600 text-white shadow-md shadow-purple-500/25 scale-105"
+                                : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                            }`}
+                          >
+                            {type}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Name and Email Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                        Your Name <span className="text-purple-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 transition-all"
+                        placeholder="John Doe"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                        Your Email <span className="text-purple-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 transition-all"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subject Input */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 transition-all"
+                      placeholder="What would you like to discuss?"
+                    />
+                  </div>
+
+                  {/* Message Textarea */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
+                      Your Message <span className="text-purple-500">*</span>
+                    </label>
+                    <textarea
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500 transition-all resize-none leading-relaxed"
+                      placeholder="Tell me more about your project goals, timelines, or questions..."
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 transition-all duration-300 flex items-center justify-center gap-2 group"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default contact

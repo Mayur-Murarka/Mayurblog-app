@@ -1,24 +1,27 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Heart, Share2, Check, Bookmark, Twitter, Linkedin, Link as LinkIcon } from "lucide-react";
+import { Heart, Check, Bookmark, Twitter, Linkedin, Link as LinkIcon } from "lucide-react";
 
 export default function ArticleActions({ title, slug }) {
   const [likes, setLikes] = useState(42);
   const [hasLiked, setHasLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined" && slug) {
-      const storedLikes = localStorage.getItem(`blog_likes_${slug}`);
-      const storedLiked = localStorage.getItem(`blog_liked_${slug}`);
-      const storedBookmarked = localStorage.getItem(`blog_bookmarked_${slug}`);
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+      if (slug) {
+        const storedLikes = localStorage.getItem(`blog_likes_${slug}`);
+        const storedLiked = localStorage.getItem(`blog_liked_${slug}`);
+        const storedBookmarked = localStorage.getItem(`blog_bookmarked_${slug}`);
 
-      if (storedLikes) setLikes(parseInt(storedLikes, 10));
-      if (storedLiked === "true") setHasLiked(true);
-      if (storedBookmarked === "true") setIsBookmarked(true);
+        if (storedLikes) setLikes(parseInt(storedLikes, 10));
+        if (storedLiked === "true") setHasLiked(true);
+        if (storedBookmarked === "true") setIsBookmarked(true);
+      }
     }
   }, [slug]);
 
@@ -52,15 +55,20 @@ export default function ArticleActions({ title, slug }) {
     }
   };
 
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title || "Great article!")}&url=${encodeURIComponent(currentUrl)}`;
-  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    title || "Great article!"
+  )}&url=${encodeURIComponent(currentUrl || "")}`;
+
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    currentUrl || ""
+  )}`;
 
   return (
     <div className="flex items-center gap-2 py-3 border-y border-slate-200/80 dark:border-slate-800/80 my-8">
       {/* Like / Clap button */}
       <button
         onClick={handleLike}
+        type="button"
         aria-label="Like article"
         className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
           hasLiked
@@ -79,6 +87,7 @@ export default function ArticleActions({ title, slug }) {
       {/* Bookmark button */}
       <button
         onClick={handleBookmark}
+        type="button"
         aria-label="Bookmark article"
         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
           isBookmarked
@@ -98,6 +107,7 @@ export default function ArticleActions({ title, slug }) {
       <div className="relative">
         <button
           onClick={handleCopyLink}
+          type="button"
           aria-label="Copy link"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200"
         >

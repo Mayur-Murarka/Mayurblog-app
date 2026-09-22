@@ -364,80 +364,95 @@ export default function Home() {
               ))}
             </div>
           ) : blogs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {blogs.map((blog, index) => (
-                <article
-                  key={index}
-                  className="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 dark:hover:shadow-purple-500/20 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
-                >
-                  {/* Image container with hover zoom and gradient overlay */}
-                  <div className="relative overflow-hidden h-52 sm:h-60 w-full bg-muted">
-                    {blog.image ? (
-                      <img
-                        src={blog.image}
-                        alt={blog.title}
-                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-blue-500/20">
-                        <Sparkles className="w-10 h-10 text-purple-400" />
-                      </div>
-                    )}
-                    {/* Dark gradient overlay for contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {blogs.slice(0, 3).map((blog, index) => (
+                  <article
+                    key={index}
+                    className="group relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900/90 border border-gray-200/80 dark:border-gray-800 shadow-md hover:shadow-2xl hover:shadow-purple-500/15 dark:hover:shadow-purple-500/20 hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
+                  >
+                    {/* Image container with hover zoom and gradient overlay */}
+                    <div className="relative overflow-hidden h-52 sm:h-60 w-full bg-muted">
+                      {blog.image ? (
+                        <img
+                          src={blog.image}
+                          alt={blog.title}
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-blue-500/20">
+                          <Sparkles className="w-10 h-10 text-purple-400" />
+                        </div>
+                      )}
+                      {/* Dark gradient overlay for contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                    {/* Featured pill badge */}
-                    <div className="absolute top-3.5 left-3.5">
-                      <span className="px-3 py-1 text-xs font-semibold tracking-wider text-white bg-black/60 backdrop-blur-md rounded-full border border-white/20 shadow-sm">
-                        Featured
-                      </span>
-                    </div>
-
-                    {/* Reading time badge */}
-                    <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1 text-xs text-white/95 bg-black/60 backdrop-blur-md rounded-full border border-white/10 shadow-sm">
-                      <Clock className="w-3.5 h-3.5 text-purple-300" />
-                      <span>5 min read</span>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Author & Date metadata */}
-                      <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-3">
-                        <span className="flex items-center gap-1.5 font-medium text-gray-700 dark:text-gray-300">
-                          <User className="w-3.5 h-3.5 text-purple-500" />
-                          {blog.author || "Mayur"}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-purple-500" />
-                          {formatDate(blog.date)}
+                      {/* Featured pill badge */}
+                      <div className="absolute top-3.5 left-3.5">
+                        <span className="px-3 py-1 text-xs font-semibold tracking-wider text-white bg-black/60 backdrop-blur-md rounded-full border border-white/20 shadow-sm">
+                          Featured
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold mb-2.5 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 line-clamp-2">
-                        {blog.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed mb-6">
-                        {blog.description}
-                      </p>
+                      {/* Reading time badge */}
+                      <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2.5 py-1 text-xs text-white/95 bg-black/60 backdrop-blur-md rounded-full border border-white/10 shadow-sm">
+                        <Clock className="w-3.5 h-3.5 text-purple-300" />
+                        <span>5 min read</span>
+                      </div>
                     </div>
 
-                    {/* Bottom CTA Button */}
-                    <div className="pt-4 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
-                      <Link
-                        href={`/blogpost/${blog.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group/btn"
-                      >
-                        <span>Read Full Article</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5 group-hover/btn:translate-x-1.5" />
-                      </Link>
+                    {/* Card Content */}
+                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Author & Date metadata */}
+                        <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-3">
+                          <span className="flex items-center gap-1.5 font-medium text-gray-700 dark:text-gray-300">
+                            <User className="w-3.5 h-3.5 text-purple-500" />
+                            {blog.author || "Mayur"}
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-purple-500" />
+                            {formatDate(blog.date)}
+                          </span>
+                        </div>
+
+                        <h3 className="text-xl font-bold mb-2.5 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 line-clamp-2">
+                          {blog.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed mb-6">
+                          {blog.description}
+                        </p>
+                      </div>
+
+                      {/* Bottom CTA Button */}
+                      <div className="pt-4 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
+                        <Link
+                          href={`/blogpost/${blog.slug}`}
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group/btn"
+                        >
+                          <span>Read Full Article</span>
+                          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5 group-hover/btn:translate-x-1.5" />
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Show More Articles Button */}
+              {blogs.length > 3 && (
+                <div className="mt-14 text-center">
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-1 transition-all duration-300 group"
+                  >
+                    <span>Show More Articles ({blogs.length} Total)</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </Link>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center text-gray-500 dark:text-gray-400 py-12">
               No blog posts available.
