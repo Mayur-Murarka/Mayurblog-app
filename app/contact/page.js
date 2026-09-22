@@ -103,11 +103,6 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-4 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Fast Response • Open to Global Collaborations</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
             Let&apos;s build something{" "}
             <span className="gradient-text">exceptional together.</span>
@@ -241,6 +236,27 @@ export default function Contact() {
                 >
                   <Linkedin className="w-4 h-4 text-[#0077b5] group-hover:text-white group-hover:scale-110 transition-all duration-300" />
                   <span>LinkedIn</span>
+                </a>
+                <a
+                  href="https://mayur-portfolio007.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 dark:hover:text-white text-xs font-semibold text-slate-700 dark:text-slate-200 transition-all duration-300 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg hover:shadow-purple-500/25 hover:-translate-y-0.5 hover:border-purple-500/50"
+                >
+                  <svg
+                    className="w-4 h-4 fill-current text-purple-600 dark:text-purple-400 group-hover:text-white group-hover:scale-110 transition-all duration-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 21 17"
+                  >
+                    <g
+                      transform="translate(0.000000,17.000000) scale(0.100000,-0.100000)"
+                      stroke="none"
+                    >
+                      <path d="M0 85 l0 -85 108 1 c59 1 99 3 90 6 -13 3 -18 15 -18 41 l0 36 -38 -37 -38 -37 -29 30 c-33 34 -26 54 8 22 l22 -21 53 50 c67 65 67 79 2 79 -32 0 -50 -4 -50 -12 0 -9 -3 -9 -12 0 -7 7 -31 12 -55 12 l-43 0 0 -85z m72 45 l37 -30 32 30 c53 48 69 36 19 -15 -24 -25 -49 -45 -54 -45 -5 0 -23 12 -38 27 l-28 27 0 -57 c0 -44 -3 -57 -15 -57 -12 0 -15 15 -15 75 0 86 6 91 62 45z" />
+                    </g>
+                  </svg>
+                  <span>Portfolio</span>
                 </a>
               </div>
             </div>

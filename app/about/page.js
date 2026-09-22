@@ -160,12 +160,6 @@ export default function About() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Narrative Intro */}
           <div className="flex-1 text-center lg:text-left animate-fade-in-up">
-            {/* Status Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-6">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Available for collaborations &amp; projects</span>
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-6">
               Crafting code, building products, &amp;{" "}
               <span className="gradient-text">sharing the journey.</span>

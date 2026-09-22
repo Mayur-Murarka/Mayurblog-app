@@ -116,15 +116,6 @@ export default function Footer() {
               An engineering-first digital publication focused on modern full-stack web architecture, frontier AI reasoning models, and production-grade programming.
             </p>
 
-            {/* Live Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-medium text-slate-300 shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span>Open to engineering collaborations</span>
-            </div>
-
             {/* Social Icons Row (Hashnode / Vercel Style) */}
             <div className="pt-2 flex items-center gap-2.5">
               <a
@@ -151,10 +142,23 @@ export default function Footer() {
                 href="https://mayur-portfolio007.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Personal Portfolio"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                aria-label="Mayur's Portfolio"
+                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-purple-500 hover:bg-purple-600 hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm group"
+                title="Mayur's Portfolio"
               >
-                <Globe className="w-4 h-4" />
+                <svg
+                  className="w-4 h-4 fill-current group-hover:scale-110 transition-transform duration-200"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 21 17"
+                >
+                  <g
+                    transform="translate(0.000000,17.000000) scale(0.100000,-0.100000)"
+                    stroke="none"
+                  >
+                    <path d="M0 85 l0 -85 108 1 c59 1 99 3 90 6 -13 3 -18 15 -18 41 l0 36 -38 -37 -38 -37 -29 30 c-33 34 -26 54 8 22 l22 -21 53 50 c67 65 67 79 2 79 -32 0 -50 -4 -50 -12 0 -9 -3 -9 -12 0 -7 7 -31 12 -55 12 l-43 0 0 -85z m72 45 l37 -30 32 30 c53 48 69 36 19 -15 -24 -25 -49 -45 -54 -45 -5 0 -23 12 -38 27 l-28 27 0 -57 c0 -44 -3 -57 -15 -57 -12 0 -15 15 -15 75 0 86 6 91 62 45z" />
+                  </g>
+                </svg>
               </a>
 
               <a
@@ -260,18 +264,6 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-
-            <div className="pt-3">
-              <a
-                href="https://mayur-portfolio007.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors"
-              >
-                <span>View Mayur&apos;s Full Portfolio</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
           </div>
         </div>
 
@@ -284,8 +276,6 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-4">
-            <span>Built with Next.js 15 &amp; Tailwind</span>
-
             {/* Back to top button */}
             <button
               onClick={scrollToTop}
