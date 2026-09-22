@@ -11,8 +11,6 @@ import {
   Heart,
   Sparkles,
   Check,
-  ExternalLink,
-  Globe,
   ArrowRight,
 } from "lucide-react";
 
@@ -35,34 +33,34 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative mt-auto bg-slate-950 text-slate-400 border-t border-slate-850 overflow-hidden select-none">
+    <footer className="relative mt-auto bg-slate-50/90 dark:bg-slate-950 text-slate-600 dark:text-slate-400 border-t border-slate-200/90 dark:border-slate-850 overflow-hidden select-none transition-colors duration-300">
       {/* Subtle Top Border Gradient Accent */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-purple-500/40 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 dark:via-purple-500/40 to-transparent" />
 
       {/* Ambient Glows */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/5 dark:bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/5 dark:bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Newsletter & Updates Banner (Clean, Seamless, Famous Blog Style) */}
-        <div className="pt-14 pb-12 border-b border-slate-900">
+        <div className="pt-14 pb-12 border-b border-slate-200/90 dark:border-slate-900">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-semibold mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>The MayurBlog Dispatch</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Stay updated with modern tech insights.
               </h2>
-              <p className="mt-2 text-sm text-slate-400 max-w-lg leading-relaxed">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
                 Join developers reading architectural breakdowns, AI reasoning analyses, and hands-on coding tutorials. No fluff, no spam.
               </p>
             </div>
 
             <div className="lg:col-span-5">
               {isSubscribed ? (
-                <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium animate-in zoom-in-95">
+                <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-sm font-medium animate-in zoom-in-95">
                   <div className="w-7 h-7 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
                     <Check className="w-4 h-4" />
                   </div>
@@ -71,16 +69,16 @@ export default function Footer() {
               ) : (
                 <form
                   onSubmit={handleSubscribe}
-                  className="flex items-center p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 focus-within:border-purple-500/70 focus-within:ring-2 focus-within:ring-purple-500/20 transition-all shadow-inner"
+                  className="flex items-center p-1.5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-sm focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-500/20 transition-all"
                 >
-                  <Mail className="w-4 h-4 text-slate-500 ml-3 shrink-0" />
+                  <Mail className="w-4 h-4 text-slate-400 dark:text-slate-500 ml-3 shrink-0" />
                   <input
                     type="email"
                     required
                     value={subscribedEmail}
                     onChange={(e) => setSubscribedEmail(e.target.value)}
                     placeholder="Enter your email address..."
-                    className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder-slate-500 outline-none"
+                    className="w-full bg-transparent px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none"
                   />
                   <button
                     type="submit"
@@ -96,7 +94,7 @@ export default function Footer() {
         </div>
 
         {/* Main 4-Column Navigation & Brand Grid */}
-        <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 border-b border-slate-900">
+        <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 border-b border-slate-200/90 dark:border-slate-900">
           {/* Column 1: Brand, Mission & Social Icons (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex items-center gap-3 group">
@@ -107,12 +105,12 @@ export default function Footer() {
                 height={50}
                 className="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(168,85,247,0.4)] group-hover:scale-105 transition-transform duration-300"
               />
-              <span className="text-2xl font-black tracking-tight text-white">
+              <span className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
                 Mayur<span className="gradient-text">Blog</span>
               </span>
             </Link>
 
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
               An engineering-first digital publication focused on modern full-stack web architecture, frontier AI reasoning models, and production-grade programming.
             </p>
 
@@ -123,7 +121,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-purple-500 hover:bg-purple-600 hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 hover:bg-purple-600 hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -133,7 +131,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#0077b5] hover:bg-[#0077b5] hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#0077b5] hover:bg-[#0077b5] hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -143,7 +141,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Mayur's Portfolio"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-purple-500 hover:bg-purple-600 hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm group"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 hover:bg-purple-600 hover:text-white text-purple-600 dark:text-purple-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm group"
                 title="Mayur's Portfolio"
               >
                 <svg
@@ -166,7 +164,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Send Direct Email"
-                className="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 hover:border-pink-500 hover:bg-pink-600 hover:text-white text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-pink-500 hover:bg-pink-600 hover:text-white text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -175,7 +173,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200">
               Explore
             </h3>
             <ul className="space-y-2.5 text-sm">
@@ -188,7 +186,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-slate-400 hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5 group"
+                    className="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-200 inline-flex items-center gap-1.5 group"
                   >
                     <span className="w-1 h-1 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span>{item.label}</span>
@@ -200,7 +198,7 @@ export default function Footer() {
 
           {/* Column 3: Trending Articles (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200">
               Trending Articles
             </h3>
             <ul className="space-y-2.5 text-sm">
@@ -229,7 +227,7 @@ export default function Footer() {
                 <li key={article.href}>
                   <Link
                     href={article.href}
-                    className="text-slate-400 hover:text-purple-400 transition-colors duration-200 line-clamp-1 block"
+                    className="text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 line-clamp-1 block"
                   >
                     {article.label}
                   </Link>
@@ -240,7 +238,7 @@ export default function Footer() {
 
           {/* Column 4: Topic Tags (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200">
               Popular Tags
             </h3>
             <div className="flex flex-wrap gap-2 pt-1">
@@ -258,7 +256,7 @@ export default function Footer() {
                 <Link
                   key={tag}
                   href="/blog"
-                  className="px-2.5 py-1 rounded-lg text-xs bg-slate-900 border border-slate-800 hover:border-purple-500/50 hover:bg-purple-950/40 text-slate-300 hover:text-purple-300 transition-all duration-200"
+                  className="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-purple-300 shadow-sm transition-all duration-200"
                 >
                   {tag}
                 </Link>
@@ -268,18 +266,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Back to Top (Clean, Minimalist) */}
-        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500">
           <p className="flex items-center gap-1.5 text-center sm:text-left">
             <span>© {new Date().getFullYear()} MayurBlog. Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
-            <span>by <strong className="font-semibold text-slate-300">Mayur Murarka</strong>.</span>
+            <span>by <strong className="font-semibold text-slate-800 dark:text-slate-300">Mayur Murarka</strong>.</span>
           </p>
 
           <div className="flex items-center gap-4">
             {/* Back to top button */}
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-purple-600 hover:text-white text-slate-400 border border-slate-800 transition-all duration-200 cursor-pointer shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-800 transition-all duration-200 cursor-pointer shadow-sm"
               title="Scroll back to top"
             >
               <span>Top</span>
