@@ -2,7 +2,7 @@
 title: "DeepSeek-R1 vs. OpenAI o1: The Rise of Open Reasoning Models"
 description: "A deep technical comparison of pure reinforcement learning, chain-of-thought architectures, and the shifting economics of artificial intelligence."
 slug: deepseek-r1-vs-openai-o1
-date: 20/02/2025
+date: "2026-02-20"
 author: Mayur
 image: /deepseek.jpg
 ---

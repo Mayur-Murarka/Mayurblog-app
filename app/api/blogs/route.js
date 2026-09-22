@@ -33,6 +33,13 @@ export async function GET() {
       })
       .filter(Boolean); // Remove any nulls from failed parses
 
+    // Sort newest articles first
+    blogs.sort((a, b) => {
+      const timeA = new Date(a.date || 0).getTime();
+      const timeB = new Date(b.date || 0).getTime();
+      return timeB - timeA;
+    });
+
     return NextResponse.json(blogs, { status: 200 });
   } catch (error) {
     console.error('Error reading blogs:', error);

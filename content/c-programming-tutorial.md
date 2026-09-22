@@ -2,7 +2,7 @@
 title: C Programming Tutorial
 description: This is C tutorial and this is for learning C
 slug: c-programming-tutorial
-date: 02/10/2024
+date: "2024-10-02"
 author: Mayur
 image: /c.jpg
 ---

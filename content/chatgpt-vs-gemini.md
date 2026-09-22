@@ -2,7 +2,7 @@
 title: "Chatgpt vs Gemini: Which is Better?"
 description: "A Detailed Comparison of Leading AI Models"
 slug: chatgpt-vs-gemini
-date: 08/12/2024
+date: "2024-12-08"
 author: Mayur
 image: /chat.webp
 ---

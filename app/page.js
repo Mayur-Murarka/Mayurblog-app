@@ -447,7 +447,7 @@ export default function Home() {
                     href="/blog"
                     className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-1 transition-all duration-300 group"
                   >
-                    <span>Show More Articles ({blogs.length} Total)</span>
+                    <span>Show More Articles</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                   </Link>
                 </div>

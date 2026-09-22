@@ -2,7 +2,7 @@
 title: CSS Tutorial
 description: This is Css tutorial and this is for learning Css
 slug: css-tutorial
-date: 05/10/2024
+date: "2024-10-05"
 author: Mayur
 image: /css.jpg
 ---

@@ -2,7 +2,7 @@
 title: "Next.js 15 & React 19: The Comprehensive Architecture Guide"
 description: "Mastering async request APIs, React 19 Actions, Turbopack, and the new caching paradigms in modern web engineering."
 slug: nextjs-15-react-19-guide
-date: 15/01/2025
+date: "2025-01-15"
 author: Mayur
 image: /nextjs15.jpg
 ---
