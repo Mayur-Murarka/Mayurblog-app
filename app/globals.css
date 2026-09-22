@@ -132,6 +132,36 @@ code[data-line-numbers-max-digits="4"] > [data-line]::before {
   50% { transform: translateY(-8px); }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
 .gradient-text {
   background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #6366f1 100%);
   -webkit-background-clip: text;
@@ -140,4 +170,146 @@ code[data-line-numbers-max-digits="4"] > [data-line]::before {
 
 .hover-glow:hover {
   box-shadow: 0 15px 30px -10px rgba(168, 85, 247, 0.25);
-}
+}
+
+/* Smooth anchor scrolling offset */
+html {
+  scroll-behavior: smooth;
+}
+
+article h1, article h2, article h3, article h4, article h5, article h6 {
+  scroll-margin-top: 6rem;
+}
+
+/* Custom Scrollbar for code blocks & page */
+pre::-webkit-scrollbar {
+  height: 6px;
+}
+pre::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+pre::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 9999px;
+}
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.7);
+}
+
+/* Enhanced Code Block Container */
+figure[data-rehype-pretty-code-figure] {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  background: #0f141c;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+/* Rehype copy button styling */
+figure[data-rehype-pretty-code-figure] button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+figure[data-rehype-pretty-code-figure] button:hover {
+  background: rgba(168, 85, 247, 0.3);
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #ffffff;
+}
+
+/* Premium Typography refinements */
+.prose-premium > h1:first-child {
+  display: none;
+}
+
+.prose .anchor-heading,
+.prose-premium .anchor-heading,
+.prose-headings a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.prose .anchor-heading:hover,
+.prose-premium .anchor-heading:hover,
+.prose-headings a:hover {
+  color: #a855f7 !important;
+}
+
+.prose-premium h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-premium h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-premium p {
+  line-height: 1.85;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: #475569;
+}
+
+.dark .prose-premium p {
+  color: #cbd5e1;
+}
+
+.prose-premium blockquote {
+  border-left-width: 4px;
+  border-left-color: #a855f7;
+  background: linear-gradient(to right, rgba(168, 85, 247, 0.08), transparent);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  margin: 1.75rem 0;
+}
+
+.prose-premium ul > li {
+  position: relative;
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.prose-premium ol > li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.prose-premium strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.dark .prose-premium strong {
+  color: #f8fafc;
+}
+
