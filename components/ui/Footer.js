@@ -9,7 +9,6 @@ import {
   Mail,
   ArrowUp,
   Heart,
-  Sparkles,
   Check,
   ArrowRight,
 } from "lucide-react";
@@ -46,10 +45,6 @@ export default function Footer() {
         <div className="pt-14 pb-12 border-b border-slate-200/90 dark:border-slate-900">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-semibold mb-3">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>The MayurBlog Dispatch</span>
-              </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 Stay updated with modern tech insights.
               </h2>
