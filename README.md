@@ -212,7 +212,3 @@ To add a new article to the blog:
 - ✉️ **Email:** [mayurmuarka1@gmail.com](mailto:mayurmuarka1@gmail.com)
 
 ---
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
